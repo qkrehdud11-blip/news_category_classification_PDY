@@ -1,6 +1,6 @@
 # 데이터 수집 및 병합
 
-import pandas as pd
+import pandas as pd     # 데이터 처리
 
 # 사회, 문화 뉴스 데이터 로드
 df = pd.read_csv('data/naver_headline_news_Social_ Culture.csv')

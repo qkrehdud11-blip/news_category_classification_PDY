@@ -9,9 +9,9 @@
 import pandas as pd                                                     # 데이터프레임 처리
 from selenium import webdriver                                          # 웹 브라우저 제어
 from selenium.webdriver.common.by import By                             # 요소 탐색
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.chrome.options import Options as ChromeOptions
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService  # 크롬 드라이버 서비스 설정
+from selenium.webdriver.chrome.options import Options as ChromeOptions  # 크롬 실행 옵션 설정
+from webdriver_manager.chrome import ChromeDriverManager                # 크롬 드라이버 자동 설치
 import time                                                             # 대기 시간 설정
 
 # 뉴스 카테고리 목록
