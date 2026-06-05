@@ -128,7 +128,7 @@ print(x_test.shape, y_test.shape)
 # ------------------------------------------------------------------------------------------------
 # 10. 전처리 데이터 저장
 # ------------------------------------------------------------------------------------------------
-np.save('./data/x_train.npy', x_train)
-np.save('./data/y_train.npy', y_train)
-np.save('./data/x_test.npy', x_test)
-np.save('./data/y_test.npy', y_test)
+np.save('./data/x_train_wordsize{}.npy'.format(wordsize), x_train)
+np.save('./data/y_train_wordsize{}.npy'.format(wordsize), y_train)
+np.save('./data/x_test_wordsize{}.npy'.format(wordsize), x_test)
+np.save('./data/y_test_wordsize{}.npy'.format(wordsize), y_test)
