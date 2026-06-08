@@ -57,5 +57,5 @@ df_titles.info()
 # ------------------------------------------------------------------------------------------------
 # 5. CSV 파일 저장
 # ------------------------------------------------------------------------------------------------
-df_titles.to_csv('./data/naver_headline_news_{}.csv'.format(
+df_titles.to_csv('./data/naver_headline_news_{}_1450.csv'.format(
                 datetime.datetime.now().strftime('%Y%m%d')), index=False)

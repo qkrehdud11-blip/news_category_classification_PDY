@@ -5,9 +5,7 @@
 # 파일명 : naver_news_section.csv
 # 컬럼명 : titles, category
 #
-# 영재님 : Politics, Economic
-# 유정님 : Social, Culture
-# 도영님 : World, IT
+# 도영님 : Politics, Economic, Social, Culture, World, IT
 #
 # 작업 완료 후 PR 진행
 
@@ -43,21 +41,32 @@ driver = webdriver.Chrome(service=service, options=options)
 # ------------------------------------------------------------------------------------------------
 # 4. 뉴스 페이지 정보 설정
 # ------------------------------------------------------------------------------------------------
-button_xpath = '//*[@id="newsct"]/div[4]/div/div[2]/a'              # 더보기 버튼 XPath
+# button_xpath = '//*[@id="newsct"]/div[4]/div/div[2]/a'              # 더보기 버튼 XPath
 
 # ------------------------------------------------------------------------------------------------
 # 5. 뉴스 제목 수집
 # ------------------------------------------------------------------------------------------------
 # 도영 담당:Politics(100), Economic(101), Social(102), Culture(103) World(104), IT(105)
-for SECTION, CATEGORY in zip(range(2, 6), category[2:6]):
+for SECTION, CATEGORY in zip(range(0, 6), category[0:6]):
     # 카테고리 페이지 접속
     url = 'https://news.naver.com/section/10{}'.format(SECTION)
     driver.get(url)
 
     # 더보기 버튼 반복 클릭
+    if SECTION == 1:
+        div_num = 5
+    else:
+        div_num = 4
+
+    button_xpath = f'//*[@id="newsct"]/div[{div_num}]/div/div[2]/a'
+
     for i in range(30):
-        driver.find_element(By.XPATH, button_xpath).click()
-        time.sleep(0.5)
+        try:
+            driver.find_element(By.XPATH, button_xpath).click()
+            time.sleep(0.5)
+        except:
+            print('더보기 종료:', CATEGORY)
+            break
 
     # 기사 제목 저장 리스트
     titles = []
@@ -66,8 +75,8 @@ for SECTION, CATEGORY in zip(range(2, 6), category[2:6]):
     for j in range(1, 180):
         for k in range(1, 7):
             try:
-                title_xpath = '//*[@id="newsct"]/div[4]/div/div[1]/div[{}]/ul/li[{}]/div/div/div[2]/a/strong'.format(
-                    j, k)
+                title_xpath = '//*[@id="newsct"]/div[{}]/div/div[1]/div[{}]/ul/li[{}]/div/div/div[2]/a/strong'.format(
+                    div_num, j, k)
                 title = driver.find_element(By.XPATH, title_xpath).text
                 titles.append(title)
             except:
@@ -95,4 +104,4 @@ df_titles.info()
 # ------------------------------------------------------------------------------------------------
 # 8. CSV 파일 저장
 # ------------------------------------------------------------------------------------------------
-df_titles.to_csv('./data/naver_news_section_PDY.csv', index=False)
+df_titles.to_csv('./data/naver_news_section_PDY_260608_1050.csv', index=False)
