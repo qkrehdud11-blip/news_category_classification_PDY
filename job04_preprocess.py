@@ -57,7 +57,7 @@ label = encoder.classes_
 print(label)
 
 with open('./data/encoder.pkl', 'wb') as f:     # 라벨 이름 저장
-    pickle.dump(label, f)
+    pickle.dump(encoder, f)
 onehot_y = to_categorical(labeled_y)            # 정답 데이터를 원-핫 인코딩으로 변환
 print(onehot_y[:5])
 
